@@ -1,0 +1,13 @@
+#!/bin/bash
+
+LOCAL=`pwd`
+[ ! -d "lib" ] && mkdir lib
+docker run \
+--name=mysql57-starter \
+--env="MYSQL_ROOT_PASSWORD=starter" \
+--volume=$LOCAL/conf.d:/etc/mysql/conf.d \
+--volume=$LOCAL/lib:/var/lib/mysql \
+--publish 3306:3306 \
+-d mysql:5.7 \
+--character-set-server=utf8 \
+--collation-server=utf8_general_ci
